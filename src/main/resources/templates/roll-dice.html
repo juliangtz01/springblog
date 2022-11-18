@@ -5,6 +5,28 @@
 	<title></title>
 </head>
 <body>
+    <h1>Welcome to the dice guessing game!</h1>
+    <div>
+        <p>Guess a number?</p>
+	<a href="http://localhost:8080/roll-dice/1">1</a>
+	<a href="http://localhost:8080/roll-dice/2">2</a>
+	<a href="http://localhost:8080/roll-dice/3">3</a>
+	<a href="http://localhost:8080/roll-dice/4">4</a>
+	<a href="http://localhost:8080/roll-dice/5">5</a>
+	<a href="http://localhost:8080/roll-dice/6">6</a>
+    </div>
 
+	<br>
+
+	<div th:if="${correctGuess} == true">
+		<p>The dice roll was <span th:text="${randomNum}"/></p>
+		<p>he number you clicked was <span th:text="${n}"/></p>
+		<p>You guess the roll correctly!!</p>
+	</div>
+	<div th:if="${correctGuess} == false">
+		<p>The dice roll was <span th:text="${randomNum}"/></p>
+		<p>he number you clicked was <span th:text="${n}"/></p>
+		<p>You guess the roll incorrectly!!</p>
+	</div>
 </body>
 </html>
