@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+	<h1>Dog Park</h1>
+	<ul>
+		<li th:each="dog: ${dogs}" th:text="${dog}"></li>
+	</ul>
+
+	<h1 th:if="${true}"> Render me this!</h1>
+</body>
+</html>
