@@ -13,10 +13,12 @@ import java.util.List;
 @Controller
 public class HomeController
 {
+    // Establish adsDao instance property
     private final AdRepository adsDao;
+    // Anytime this controller is used, inject the adsDao, so we can use it!
     public HomeController(AdRepository adsDao)
     {
-        this.allAds = adsDao;
+        this.adsDao = adsDao;
     }
 
     @GetMapping("/")
@@ -30,6 +32,10 @@ public class HomeController
     public String allAds(Model model)
     {
         List<Ad> ads = adsDao.findAll();
+        // Other methods to note:
+        // .save() - insert new record, or update a record
+        // .delete() - delete a record
+        // .findById() - find record by id
 
         model.addAttribute("ads", ads);
         return "ads";
