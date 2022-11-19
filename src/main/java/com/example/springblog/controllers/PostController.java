@@ -25,18 +25,20 @@ public class PostController
     public String postsIndex(Model model)
     {
         // Instantiate the list to hold all the Post objects
-        List<Post> allPosts = new ArrayList<>();
-        // Instantiate new Post objects
-        Post p1 = new Post(1L, "Test Title", "test body");
-        Post p2 = new Post(2L, "Exam Title", "exam body");
-        Post p3 = new Post(3L, "Assessment Title", "assessment body");
-        Post p4 = new Post(4L, "Final Title", "final body");
+//        List<Post> allPosts = new ArrayList<>();
+//        // Instantiate new Post objects
+//        Post p1 = new Post(1, "Test Title", "test body");
+//        Post p2 = new Post(2, "Exam Title", "exam body");
+//        Post p3 = new Post(3, "Assessment Title", "assessment body");
+//        Post p4 = new Post(4, "Final Title", "final body");
+//
+//        // Add newly instantiated Posts to the list
+//        allPosts.add(p1);
+//        allPosts.add(p2);
+//        allPosts.add(p3);
+//        allPosts.add(p4);
 
-        // Add newly instantiated Posts to the list
-        allPosts.add(p1);
-        allPosts.add(p2);
-        allPosts.add(p3);
-        allPosts.add(p4);
+        List<Post> allPosts = postDao.findAll();
 
         // Add the list of Posts as a model attribute to send to the template for rendering
         model.addAttribute("allPosts", allPosts);
@@ -53,16 +55,18 @@ public class PostController
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
     public String showCreateForm()
     {
-        return "view the form for creating a post";
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String submitPost()
+    public String submitPost(Model model, String title, String body)
     {
-        return "create a new post";
+        System.out.println(title);
+        System.out.println(body);
+        Post newPost = new Post(title, body);
+        postDao.save(newPost);
+        return "redirect:/posts";
     }
 }
