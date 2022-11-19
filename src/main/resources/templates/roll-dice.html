@@ -5,6 +5,7 @@
 	<title></title>
 </head>
 <body>
+	<!-- Create a page at /roll-dice that asks the user to guess a number. There should be links on this page for 1 through 6 that should make a GET request to /roll-dice/n where n is the number guessed. This page should display a random number (the dice roll), the user's guess and a message based on whether or not they guessed the correct number. -->
     <h1>Welcome to the dice guessing game!</h1>
     <div>
         <p>Guess a number?</p>
@@ -18,15 +19,21 @@
 
 	<br>
 
+	<!-- Result of user's guess -->
+<!--	<h1>The dice roll was <span th:text="${randomNum}"></span></h1>-->
+<!--	<h2>The number you clicked was <span th:text="${n}"></span></h2>-->
+<!--	<h2 th:if="${correctGuess == true}">You guessed the roll correctly!</h2>-->
+<!--	<h2 th:if="${correctGuess == false}">You guessed the roll incorrectly!</h2>-->
+
 	<div th:if="${correctGuess} == true">
-		<p>The dice roll was <span th:text="${randomNum}"/></p>
-		<p>he number you clicked was <span th:text="${n}"/></p>
-		<p>You guess the roll correctly!!</p>
+		<h1>The dice roll was <span th:text="${randomNum}"></span></h1>
+		<h2>The number you clicked was <span th:text="${n}"/></h2>
+		<h2>You guess the roll correctly!!</h2>
 	</div>
 	<div th:if="${correctGuess} == false">
-		<p>The dice roll was <span th:text="${randomNum}"/></p>
-		<p>he number you clicked was <span th:text="${n}"/></p>
-		<p>You guess the roll incorrectly!!</p>
+		<h1>The dice roll was <span th:text="${randomNum}"/></h1>
+		<h2>The number you clicked was <span th:text="${n}"/></h2>
+		<h2>You guess the roll incorrectly!!</h2>
 	</div>
 </body>
 </html>

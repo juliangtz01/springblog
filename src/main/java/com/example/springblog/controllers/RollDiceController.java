@@ -22,12 +22,7 @@ public class RollDiceController
         Random random = new Random();
         int randomNum = 1 + random.nextInt(6);
 
-        boolean correctGuess = false;
-
-        if(randomNum == n)
-        {
-            correctGuess = true;
-        }
+        boolean correctGuess = randomNum == n;
         model.addAttribute("correctGuess", correctGuess);
         model.addAttribute("randomNum", randomNum);
         model.addAttribute("n", n);
