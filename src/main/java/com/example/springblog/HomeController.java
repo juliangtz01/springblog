@@ -29,4 +29,11 @@ public class HomeController
         model.addAttribute("dogs", dogs);
         return "dogPark";
     }
+
+    @GetMapping("/hello/{name}")
+    public String sayHello(@PathVariable String name, Model model)
+    {
+        model.addAttribute("name", name);
+        return "hello";
+    }
 }
