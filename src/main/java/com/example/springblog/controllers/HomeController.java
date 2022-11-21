@@ -65,25 +65,31 @@ public class HomeController {
     @GetMapping("/ads/{id}")
     public String singlePost(@PathVariable long id, Model model)
     {
-        Post singlePost = new Post(id, "First Post!", "This is the first time I've ever uses Spring");
-        model.addAttribute("post", singlePost);
+//        Post singlePost = new Post(id, "First Post!", "This is the first time I've ever uses Spring");
+        Ad singleAd = adsDao.getReferenceById(id);
+        model.addAttribute("post", singleAd);
         return "posts/show";
     }
 
     @GetMapping("/ads/create")
-    public String showCreateForm() {
+    public String showCreateForm(Model model) {
+        model.addAttribute("post", new Ad());
         return "ads/create";
     }
 
     @PostMapping("/ads/create")
-    public String create(@RequestParam(name = "title") String title, @RequestParam(name = "description") String description)
+    public String create(@ModelAttribute Ad ad)
     {
+        Owner owner =
+        adsDao.save(ad);
         Ad ad = new Ad();
         ad.setTitle(title);
         ad.setDescription(description);
         // save the ad...
         return "red"
     }
+
+
 
 
 }

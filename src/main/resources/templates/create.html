@@ -7,11 +7,11 @@
 <body>
   <h1>Create an Ad</h1>
   <form th:action="@{/ads/create}" th:method="post" th:object="${ad}">
-    Title:
-    <input th:field="*{title}" />
+    <label for="title">Title </label>
+    <input th:field="*{title}" id="title"/>
     <br />
-    Description:
-    <input th:field="*{description}" />
+    <label for="description">Description </label>
+    <input th:field="*{description}" id="description"/>
     <br />
     <input type="submit" />
   </form>
