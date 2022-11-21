@@ -1,7 +1,9 @@
 package com.example.springblog.controllers;
 
 import com.example.springblog.models.Post;
+import com.example.springblog.models.User;
 import com.example.springblog.repositories.PostRepository;
+import com.example.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,15 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PostController
 {
     private final PostRepository postDao;
 
-    public PostController(PostRepository postDao)
+    private final UserRepository userDao;
+
+    public PostController(PostRepository postDao, UserRepository userDao)
     {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
     @GetMapping("/posts")
     public String postsIndex(Model model)
@@ -63,8 +69,11 @@ public class PostController
     @PostMapping("/posts/create")
     public String submitPost(String title, String body)
     {
-        Post newPost = new Post(title, body);
+        User newUser = userDao.getById(1L);
+        Post newPost = new Post(title, body, newUser);
+
         postDao.save(newPost);
+
         return "redirect:/posts";
     }
 }

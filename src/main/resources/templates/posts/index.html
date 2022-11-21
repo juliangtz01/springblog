@@ -15,9 +15,13 @@
 	<nav th:replace="/partials/partials.html :: navbar"></nav>
 	<div class="container">
 		<div class="row">
+			<h1>Featured Post</h1>
+			<hr>
+			<br>
 			<div class="col" th:each="post : ${allPosts}">
-				<h1 th:text="${post.title}"></h1>
+				<h2 th:text="${post.title}"></h2>
 				<p th:text="${post.body}"></p>
+				<p th:text="${'Created by ' + post.user.email}"></p>
 			</div>
 		</div>
 	</div>
