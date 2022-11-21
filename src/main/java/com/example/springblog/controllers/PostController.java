@@ -6,10 +6,7 @@ import com.example.springblog.repositories.PostRepository;
 import com.example.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,19 +59,35 @@ public class PostController
     }
 
     @GetMapping("/posts/create")
-    public String showCreateForm()
+    public String showCreateForm(Model model)
     {
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String submitPost(String title, String body)
+    public String submitPost(@ModelAttribute Post post)
     {
-        User newUser = userDao.getById(1L);
-        Post newPost = new Post(title, body, newUser);
+        User user = userDao.getById(1L);
+        post.setUser(user);
+        postDao.save(post);
 
-        postDao.save(newPost);
+        return "redirect:/posts";
+    }
 
+    @GetMapping("/posts/{id}/edit")
+    public String editPost(@PathVariable long id, Model model)
+    {
+        Post post = postDao.getById(id);
+        model.addAttribute("post", post);
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/edit")
+    public String editPost(Model model)
+    {
+//        Post singlePost = postDao.getById(id);
+//        model.addAttribute("post", singlePost);
         return "redirect:/posts";
     }
 }
