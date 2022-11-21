@@ -61,10 +61,8 @@ public class PostController
     }
 
     @PostMapping("/posts/create")
-    public String submitPost(Model model, String title, String body)
+    public String submitPost(String title, String body)
     {
-        System.out.println(title);
-        System.out.println(body);
         Post newPost = new Post(title, body);
         postDao.save(newPost);
         return "redirect:/posts";
