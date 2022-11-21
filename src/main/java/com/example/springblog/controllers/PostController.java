@@ -55,7 +55,8 @@ public class PostController
     @GetMapping("/posts/{id}")
     public String singlePost(@PathVariable long id, Model model)
     {
-        Post singlePost = new Post(id, "First Post!", "This is the first time I've ever uses Spring");
+//        Post singlePost = new Post(id, "First Post!", "This is the first time I've ever uses Spring");
+        Post singlePost = postDao.getById(id);
         model.addAttribute("post", singlePost);
         return "posts/show";
     }
