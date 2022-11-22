@@ -79,6 +79,7 @@ public class PostController
     {
         Post post = postDao.getById(id);
         model.addAttribute("post", post);
+//        model.addAttribute("post", postDao.getReferenceById(id));
         return "posts/edit";
     }
 
