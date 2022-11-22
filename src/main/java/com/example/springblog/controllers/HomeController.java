@@ -1,7 +1,6 @@
 package com.example.springblog.controllers;
 
 import com.example.springblog.models.Ad;
-import com.example.springblog.models.Post;
 import com.example.springblog.repositories.AdRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,17 +76,17 @@ public class HomeController {
         return "ads/create";
     }
 
-    @PostMapping("/ads/create")
-    public String create(@ModelAttribute Ad ad)
-    {
-        Owner owner =
-        adsDao.save(ad);
-        Ad ad = new Ad();
-        ad.setTitle(title);
-        ad.setDescription(description);
-        // save the ad...
-        return "red"
-    }
+//    @PostMapping("/ads/create")
+//    public String create(@ModelAttribute Ad ad)
+//    {
+//        Owner owner =
+//        adsDao.save(ad);
+//        Ad ad = new Ad();
+//        ad.setTitle(title);
+//        ad.setDescription(description);
+//        // save the ad...
+//        return "red"
+//    }
 
 
 
