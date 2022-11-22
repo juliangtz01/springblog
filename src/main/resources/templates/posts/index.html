@@ -21,7 +21,8 @@
 			<div class="col" th:each="post : ${allPosts}">
 				<h2 th:text="${post.title}"></h2>
 				<p th:text="${post.body}"></p>
-				<p th:text="${'Created by ' + post.user.email}"></p>
+				<p th:text="${'Created by ' + post.user.username}"></p>
+				<p th:text="${'Email at: ' + post.user.email}"></p>
 			</div>
 		</div>
 	</div>

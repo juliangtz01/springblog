@@ -14,6 +14,7 @@
 	<div class="container">
 		<form th:action="@{/posts/edit}" th:method="POST" th:object="${post}">
 			<input type="hidden" th:field="*{id}">
+			<input type="hidden" th:field="*{user}">
 			<label for="title">Title </label>
 			<input th:field="*{title}" id="title">
 			<label for="description">Description </label>
