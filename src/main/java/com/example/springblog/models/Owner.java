@@ -15,13 +15,24 @@ public class Owner {
 
     @Column
     private String lastName;
+    @Column
+    private String email;
 
     public Owner(){};
 
-    public Owner(long id, String firstName, String lastName) {
+    public Owner(long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public long getId() {
