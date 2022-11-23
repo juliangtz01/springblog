@@ -3,6 +3,7 @@ package com.example.springblog.controllers;
 import com.example.springblog.models.Ad;
 import com.example.springblog.repositories.AdRepository;
 import com.example.springblog.repositories.OwnerRepository;
+import com.example.springblog.services.AdService;
 import com.example.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,13 @@ public class HomeController {
     private final AdRepository adsDao;
     private final OwnerRepository ownerDao;
     private final EmailService emailService;
+    private final AdService adService;
     // Anytime this controller is used, inject the adsDao so we can use it!
-    public HomeController(AdRepository adsDao, OwnerRepository ownerDao, EmailService emailService) {
+    public HomeController(AdRepository adsDao, OwnerRepository ownerDao, EmailService emailService, AdService adService) {
         this.adsDao = adsDao;
         this.ownerDao = ownerDao;
         this.emailService = emailService;
+        this.adService = adService;
     }
 
     @GetMapping("/")
@@ -85,6 +88,7 @@ public class HomeController {
     @PostMapping("/ads/create")
     public String create(@ModelAttribute Ad ad)
     {
+        adService.createAd(ad);
         return "ads";
     }
 
