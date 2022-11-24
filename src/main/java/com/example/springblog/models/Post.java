@@ -1,6 +1,6 @@
 package com.example.springblog.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "posts")

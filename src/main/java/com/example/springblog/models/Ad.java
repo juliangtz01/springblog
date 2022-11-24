@@ -1,7 +1,7 @@
 package com.example.springblog.models;
 
 import com.example.springblog.models.Owner;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
