@@ -4,6 +4,7 @@ import com.example.springblog.models.Post;
 import com.example.springblog.models.User;
 import com.example.springblog.repositories.PostRepository;
 import com.example.springblog.repositories.UserRepository;
+import com.example.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +17,13 @@ public class PostController
     private final PostRepository postDao;
     private final UserRepository userDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao)
+    private EmailService emailService;
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService)
     {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
     @GetMapping("/posts")
     public String postsIndex(Model model)
@@ -85,6 +89,24 @@ public class PostController
     public String create(@ModelAttribute Post post){
         User user = userDao.getById(1L);
         post.setUser(user);
+        postDao.save(post);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String editPost(@PathVariable long id, Model model)
+    {
+        model.addAttribute("post", postDao.getReferenceById(id));
+        return "posts/editPost";
+    }
+
+    @PostMapping("/posts/edit")
+    public String editPost(@ModelAttribute Post post)
+    {
+        System.out.println(post.getId());
+        User user = userDao.getReferenceById(1L);
+        post.setUser(user);
+        //post.setId(id);
         postDao.save(post);
         return "redirect:/posts";
     }
