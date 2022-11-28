@@ -81,15 +81,15 @@ public class HomeController {
 
     @GetMapping("/ads/create")
     public String showCreateForm(Model model) {
-        model.addAttribute("post", new Ad());
-        return "ads/create";
+        model.addAttribute("ad", new Ad());
+        return "adCreate";
     }
 
     @PostMapping("/ads/create")
     public String create(@ModelAttribute Ad ad)
     {
         adService.createAd(ad);
-        return "ads";
+        return "redirect:/ads";
     }
 
 
