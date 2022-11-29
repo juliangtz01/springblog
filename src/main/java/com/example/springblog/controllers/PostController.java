@@ -4,6 +4,7 @@ import com.example.springblog.models.Post;
 import com.example.springblog.models.User;
 import com.example.springblog.repositories.PostRepository;
 import com.example.springblog.repositories.UserRepository;
+import com.example.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +20,13 @@ public class PostController
 
     private final UserRepository userDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao)
+    private final EmailService emailService;
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService)
     {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
     @GetMapping("/posts")
     public String postsIndex(Model model)
@@ -70,6 +74,8 @@ public class PostController
         User user = userDao.getById(1L);
         post.setUser(user);
         postDao.save(post);
+
+        emailService.prepareAndSend(post, "New Post Created!", "A new post has been created! Here is the title of your new post! Title: " + post.getTitle());
 
         return "redirect:/posts";
     }
