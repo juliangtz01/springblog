@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymleaf.org/extras/spring-security">
 <head>
 	<title></title>
 </head>
@@ -23,6 +23,13 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link disabled">Disabled</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav" sec:authorize="isAuthenticated()">
+					<li class="nav-item">
+						<form th:action="@{/logout}" method="POST">
+							<button type="submit">Logout</button>
+						</form>
 					</li>
 				</ul>
 			</div>

@@ -25,6 +25,15 @@ public class User
 
     public User(){}
 
+    // Create a copy of the user to provide to the UserWithRoles class.
+    public User(User copy) {
+        id = copy.id;
+        username = copy.username;
+        email = copy.email;
+        password = copy.password;
+        post = copy.post;
+    }
+
     public User(long id, String username, String email, String password, List<Post> post) {
         this.id = id;
         this.username = username;

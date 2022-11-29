@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long>
 {
-
+    // JPA will configure the qurey
+    User findByUsername(String username);
 }
